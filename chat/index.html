@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GSAP Button Hover</title>
+  <style>
+    body{
+        background: rgb(155, 155, 227);
+    }
+    #sub {
+      position: relative;
+      overflow: hidden;
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: green;
+      z-index: 0;
+    }
+
+    #sub span {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="sub">
+    <div class="overlay"></div>
+    <span>Submit</span>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const btn = document.getElementById("sub");
+    const overlay = btn.querySelector(".overlay");
+
+    btn.addEventListener("mouseenter", () => {
+      gsap.to(overlay, {
+        duration: 0.4,
+        left: "0%",
+        ease: "power2.out"
+      });
+      btn.style.boxShadow = "0px 4px 29px rgba(50, 50, 100, 0.4)";
+    });
+
+    btn.addEventListener("mouseleave", () => {
+      gsap.to(overlay, {
+        duration: 0.4,
+        left: "-100%",
+        ease: "power2.in"
+      });
+      btn.style.boxShadow = "none";
+    });
+  </script>
+
+</body>
+</html>
